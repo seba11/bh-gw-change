@@ -1,0 +1,10 @@
+[Unit]
+Description=Bh gw change server
+After=network.target
+
+[Service]
+Restart=on-failure
+ExecStart=/usr/bin/php -S x.x.x.x:666 /usr/local/sbin/bh-gw-change/bh-gw-change.php
+
+[Install]
+WantedBy=multi-user.target
