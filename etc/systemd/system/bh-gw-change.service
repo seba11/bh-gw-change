@@ -1,10 +1,15 @@
 [Unit]
-Description=Bh gw change server
-After=network.target
+Description=BH gateway change service
+After=network-online.target
+Wants=network-online.target
 
 [Service]
+Type=simple
+EnvironmentFile=/etc/default/bh-gw-change
+WorkingDirectory=/usr/local/sbin/bh-gw-change
+ExecStart=/usr/bin/php -S ${LISTEN_ADDRESS}:${LISTEN_PORT} /usr/local/sbin/bh-gw-change/bh-gw-change.php
 Restart=on-failure
-ExecStart=/usr/bin/php -S x.x.x.x:666 /usr/local/sbin/bh-gw-change/bh-gw-change.php
+RestartSec=5
 
 [Install]
 WantedBy=multi-user.target
